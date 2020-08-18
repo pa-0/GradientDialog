@@ -20,6 +20,7 @@
 
 #include "gradient_edit.h"
 
+#include <QtMath>
 #include <QMouseEvent>
 #include <QPaintEvent>
 #include <QPainter>
@@ -193,8 +194,8 @@ void GradientEdit::updatePoints()
       const QConicalGradient& cg = static_cast<QConicalGradient&>(m_gradient);
       m_points.append(cg.center());
       m_points.append(cg.center());
-      m_points.last().rx() += 0.1 * cos(cg.angle() * M_PI / 180);
-      m_points.last().ry() -= 0.1 * sin(cg.angle() * M_PI / 180);
+      m_points.last().rx() += 0.1 * cos(qDegreesToRadians(cg.angle()));
+      m_points.last().ry() -= 0.1 * sin(qDegreesToRadians(cg.angle()));
       break;
     }
 
