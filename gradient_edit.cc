@@ -123,8 +123,10 @@ void GradientEdit::mousePressEvent(QMouseEvent* event)
 {
   for (int i = 0; i < m_points.size(); ++i) {
     QPointF p(m_points[i].x() * width(), m_points[i].y() * height());
-    if (QLineF(p, event->position()).length() < 5)
+    if (QLineF(p, event->position()).length() < 5) {
       m_selected_point = i;
+      break;
+    }
   }
   event->accept();
 }
