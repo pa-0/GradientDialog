@@ -11,7 +11,8 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 add_library(gradient_dialog STATIC
   gradient_dialog.cc
@@ -25,7 +26,6 @@ add_library(gradient_dialog STATIC
   gradient_variant.h
 )
 
-target_link_libraries(gradient_dialog PRIVATE Qt5::Widgets)
+target_link_libraries(gradient_dialog PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-target_compile_definitions(gradient_dialog PRIVATE GRADIENT_DIALOG_LIBRARY)
 target_include_directories(gradient_dialog PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
