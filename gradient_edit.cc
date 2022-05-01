@@ -199,8 +199,10 @@ void GradientEdit::updatePoints()
       const QConicalGradient& cg = static_cast<QConicalGradient&>(m_gradient);
       m_points.append(cg.center());
       m_points.append(cg.center());
-      m_points.last().rx() += 0.1 * cos(qDegreesToRadians(cg.angle()));
-      m_points.last().ry() -= 0.1 * sin(qDegreesToRadians(cg.angle()));
+      QPointF c = cg.center();
+      qreal k = qMin(qMin(c.x(), 1 - c.x()), qMin(c.y(), 1 - c.y()));
+      m_points.last().rx() += k * cos(qDegreesToRadians(cg.angle()));
+      m_points.last().ry() -= k * sin(qDegreesToRadians(cg.angle()));
       break;
     }
 
