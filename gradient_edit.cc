@@ -134,8 +134,8 @@ void GradientEdit::mouseMoveEvent(QMouseEvent* event)
 {
   if (m_selected_point != -1) {
     QPointF& p = m_points[m_selected_point];
-    p.rx() = event->position().x() / width();
-    p.ry() = event->position().y() / height();
+    p.rx() = qBound(0.0, event->position().x() / width(), 1.0);
+    p.ry() = qBound(0.0, event->position().y() / height(), 1.0);
     updateGradient();
     update();
     emit gradientChanged(m_gradient);
