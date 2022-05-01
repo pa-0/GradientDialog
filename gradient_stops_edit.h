@@ -48,14 +48,9 @@ protected:
   void mousePressEvent(QMouseEvent* event) override;
   void mouseMoveEvent(QMouseEvent* event) override;
   void mouseReleaseEvent(QMouseEvent* event) override;
-
   void mouseDoubleClickEvent(QMouseEvent* event) override;
 
   void paintEvent(QPaintEvent* event) override;
-
-private:
-  QBrush m_background;
-  QGradientStops m_stops;
 
 private:
   int findStopIndex(qreal xpos) const;
@@ -64,9 +59,13 @@ private:
   void removeStop(int idx);
 
   QColor pickColor(qreal pos) const;
+
   void updateImage();
 
 private:
+  QBrush m_background;
+  QGradientStops m_stops;
+
   int m_stop_index = -1;
   QImage m_gradient;
 };

@@ -58,14 +58,13 @@ protected:
   void paintEvent(QPaintEvent* event) override;
 
 private:
-  QBrush m_background;
-  QGradient m_gradient;
-
-private:
   void updatePoints();
   void updateGradient();
 
 private:
+  QBrush m_background;
+  QGradient m_gradient;
+
   QVector<QPointF> m_points;
   int m_selected_point = -1;
 };
