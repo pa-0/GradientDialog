@@ -25,6 +25,10 @@
 #include <QPaintEvent>
 #include <QPainter>
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#define position localPos
+#endif
+
 static QPixmap create_background()
 {
   QPixmap pxm(8, 8);
@@ -119,7 +123,7 @@ void GradientEdit::mousePressEvent(QMouseEvent* event)
 {
   for (int i = 0; i < m_points.size(); ++i) {
     QPointF p(m_points[i].x() * width(), m_points[i].y() * height());
-    QLineF l(p, event->pos());
+    QLineF l(p, event->position());
     if (l.length() < 5)
       m_selected_point = i;
   }
@@ -130,8 +134,8 @@ void GradientEdit::mouseMoveEvent(QMouseEvent* event)
 {
   if (m_selected_point != -1) {
     QPointF& p = m_points[m_selected_point];
-    p.rx() = static_cast<qreal>(event->x()) / width();
-    p.ry() = static_cast<qreal>(event->y()) / height();
+    p.rx() = event->position().x() / width();
+    p.ry() = event->position().y() / height();
     updateGradient();
     update();
     emit gradientChanged(m_gradient);

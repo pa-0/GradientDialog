@@ -58,7 +58,7 @@ private:
   QGradientStops m_stops;
 
 private:
-  int findStopIndex(int xpos) const;
+  int findStopIndex(qreal xpos) const;
 
   void addStop(qreal pos);
   void removeStop(int idx);

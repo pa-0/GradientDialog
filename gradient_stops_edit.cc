@@ -26,6 +26,10 @@
 #include <QPaintEvent>
 #include <QPainter>
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#define position localPos
+#endif
+
 inline bool cmp_pos(const QGradientStop& a, const QGradientStop& b)
 {
   return a.first < b.first;
@@ -82,15 +86,15 @@ void GradientStopsEdit::setStops(const QGradientStops& stops)
 
 void GradientStopsEdit::mousePressEvent(QMouseEvent* event)
 {
-  int stop_index = findStopIndex(event->x());
+  int stop_index = findStopIndex(event->position().x());
   // do not allow to select first and last stops
   if (stop_index != 0 && stop_index != m_stops.size() - 1)
     m_stop_index = stop_index;
 
   // create new stop on left button click
   if (stop_index == -1 && event->button() == Qt::LeftButton) {
-    addStop(static_cast<qreal>(event->x()) / width());
-    m_stop_index = findStopIndex(event->x());
+    addStop(event->position().x() / width());
+    m_stop_index = findStopIndex(event->position().x());
     Q_ASSERT(m_stop_index != -1);
     update();
   }
@@ -101,8 +105,8 @@ void GradientStopsEdit::mousePressEvent(QMouseEvent* event)
 void GradientStopsEdit::mouseMoveEvent(QMouseEvent* event)
 {
   if ((event->buttons() & Qt::LeftButton) && (m_stop_index != -1) &&
-      (4 < event->x()) && (event->x() < width() - 4)) {
-    m_stops[m_stop_index].first = static_cast<qreal>(event->x()) / width();
+      (4 < event->position().x()) && (event->position().x() < width() - 4)) {
+    m_stops[m_stop_index].first = event->position().x() / width();
     updateImage();
     update();
     emit stopsChanged(m_stops);
@@ -129,7 +133,7 @@ void GradientStopsEdit::mouseReleaseEvent(QMouseEvent* event)
 
 void GradientStopsEdit::mouseDoubleClickEvent(QMouseEvent* event)
 {
-  int idx = findStopIndex(event->x());
+  int idx = findStopIndex(event->position().x());
   if (idx != -1) {
     QColor color = QColorDialog::getColor(
                      m_stops[idx].second,
@@ -173,10 +177,10 @@ void GradientStopsEdit::paintEvent(QPaintEvent* event)
   event->accept();
 }
 
-int GradientStopsEdit::findStopIndex(int xpos) const
+int GradientStopsEdit::findStopIndex(qreal xpos) const
 {
   for (int i = 0; i < m_stops.size(); ++i) {
-    int x = qRound(m_stops[i].first * width());
+    qreal x = m_stops[i].first * width();
     constexpr const int dx = 4;
     if (x - dx < xpos && xpos < x + dx)
       return i;
