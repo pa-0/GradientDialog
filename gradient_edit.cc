@@ -123,8 +123,7 @@ void GradientEdit::mousePressEvent(QMouseEvent* event)
 {
   for (int i = 0; i < m_points.size(); ++i) {
     QPointF p(m_points[i].x() * width(), m_points[i].y() * height());
-    QLineF l(p, event->position());
-    if (l.length() < 5)
+    if (QLineF(p, event->position()).length() < 5)
       m_selected_point = i;
   }
   event->accept();
@@ -230,8 +229,7 @@ void GradientEdit::updateGradient()
     case QGradient::ConicalGradient: {
       QConicalGradient& cg = static_cast<QConicalGradient&>(m_gradient);
       cg.setCenter(m_points.at(0));
-      QLineF l(m_points.at(0), m_points.at(1));
-      cg.setAngle(l.angle());
+      cg.setAngle(QLineF(m_points.at(0), m_points.at(1)).angle());
       break;
     }
 
