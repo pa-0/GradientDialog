@@ -118,8 +118,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>257</x>
+     <y>197</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -134,12 +134,28 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>325</x>
+     <y>197</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>type_conical_rbtn</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spread_group</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>192</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>111</y>
     </hint>
    </hints>
   </connection>
