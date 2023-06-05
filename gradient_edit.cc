@@ -99,7 +99,7 @@ void GradientEdit::setGradientType(QGradient::Type type)
   gradient.setCoordinateMode(QGradient::ObjectMode);
   gradient.setSpread(m_gradient.spread());
   gradient.setStops(m_gradient.stops());
-  m_gradient = gradient;
+  m_gradient = std::move(gradient);
   updateGradient();
   update();
   emit gradientChanged(m_gradient);
