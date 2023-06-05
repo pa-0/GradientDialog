@@ -34,7 +34,8 @@ class GradientDialog : public QDialog
 public:
   static QGradient getGradient(bool* ok,
                                const QGradient& gradient = QLinearGradient(),
-                               QWidget* parent = nullptr);
+                               QWidget* parent = nullptr,
+                               const QString& title = QString());
 
   explicit GradientDialog(QWidget* parent = nullptr)
     : GradientDialog(QLinearGradient(), parent) {}

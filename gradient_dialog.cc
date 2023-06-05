@@ -21,9 +21,12 @@
 #include "gradient_dialog.h"
 #include "ui_gradient_dialog.h"
 
-QGradient GradientDialog::getGradient(bool* ok, const QGradient& gradient, QWidget* parent)
+QGradient GradientDialog::getGradient(bool* ok, const QGradient& gradient,
+                                      QWidget* parent, const QString& title)
 {
   GradientDialog dlg(gradient, parent);
+  if (!title.isEmpty())
+    dlg.setWindowTitle(title);
   dlg.exec();
   if (ok)
     *ok = dlg.result() == QDialog::Accepted;
