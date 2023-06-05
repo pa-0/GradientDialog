@@ -98,7 +98,7 @@ Final notes
 Returned `QGradient` object has a specific option set
 
 ```cpp
-m_gradient.setCoordinateMode(QGradient::StretchToDeviceMode);
+m_gradient.setCoordinateMode(QGradient::ObjectMode);
 ```
 
 so, to use it in your code you may need to change this option or adjust your code. Read more about this option in Qt documentation.

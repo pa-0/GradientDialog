@@ -52,7 +52,7 @@ GradientEdit::GradientEdit(const QGradient& gradient, QWidget* parent)
   m_points.append({0.25, 0.75});
   m_points.append({0.75, 0.25});
 
-  m_gradient.setCoordinateMode(QGradient::StretchToDeviceMode);
+  m_gradient.setCoordinateMode(QGradient::ObjectMode);
   updateGradient();
 }
 
@@ -69,7 +69,7 @@ QSize GradientEdit::minimumSizeHint() const
 void GradientEdit::setGradient(const QGradient& gradient)
 {
   m_gradient = gradient;
-  m_gradient.setCoordinateMode(QGradient::StretchToDeviceMode);
+  m_gradient.setCoordinateMode(QGradient::ObjectMode);
   updatePoints();
   update();
   emit gradientChanged(m_gradient);
@@ -96,7 +96,7 @@ void GradientEdit::setGradientType(QGradient::Type type)
       break;
   }
 
-  gradient.setCoordinateMode(QGradient::StretchToDeviceMode);
+  gradient.setCoordinateMode(QGradient::ObjectMode);
   gradient.setSpread(m_gradient.spread());
   gradient.setStops(m_gradient.stops());
   m_gradient = gradient;
