@@ -24,7 +24,9 @@
 QGradient GradientDialog::getGradient(bool* ok, const QGradient& gradient, QWidget* parent)
 {
   GradientDialog dlg(gradient, parent);
-  *ok = dlg.exec() == QDialog::Accepted;
+  dlg.exec();
+  if (ok)
+    *ok = dlg.result() == QDialog::Accepted;
   return dlg.gradient();
 }
 
