@@ -1,7 +1,7 @@
 Gradient Picker Dialog
 ======================
 
-This project includes the Qt gradient picker library itself and a demo application demonstrating how this dialog looks. Additionally, it has code required for `QGradient` integration with `QVariant` (it is available in a separate header file).
+This project includes the Qt gradient picker library itself and a demo application demonstrating how this dialog looks.
 
 Provided dialog was written as a missing part that complements `QColorDialog` for one personal project that unfortunately did not come to life, and just shared as a likely useful component for some other graphics-related project.
 
@@ -92,33 +92,8 @@ The primary header you are interested in is `gradient_dialog.h`, it contains all
 
 The first option is more flexible. It is asynchronous and allows to subscribe to `gradientChanged()` signal and track gradient changes on the fly (for example for a live preview of customizing component). The second one is for the sake of simplicity (note the similar syntax compared to `QColorDialog::getColor()`) and it is synchronous (i.e. blocking call).
 
-As it was mentioned at the beginning, this library also provides `QGradient` integration with `QVariant`. To use this stuff you should include another header - `gradient_variant.h`. Then you will be able to save gradients using `QSettings` (regardless of the actual backend) for example:
-
-```cpp
-#include <QSettings>
-#include "gradient_variant.h"
-
-QSettings settings;
-
-// to save QGradient with QSettings
-QConicalGradient g(0.5, 0.5, 45.0);
-g.setStops({
-    {0.00, {170,   0,   0}},  // #aa0000
-    {0.20, {  0,  85, 255}},  // #0055ff
-    {0.45, {  0, 170,   0}},  // #00aa00
-    {0.65, {255, 255,   0}},  // #ffff00
-    {1.00, {170,   0,   0}},  // #aa0000
-});
-settings.setValue("view/gradient", QVariant::fromValue(g));
-
-// to restore QGradient from QSettings
-QGradient g = settings.value("view/gradient").value<QGradient>();
-```
-
 Final notes
 -----------
-
-First of all, this stuff primary was written for the usage with QSettings and my particular project, so it may be not suit well for all cases.
 
 Returned `QGradient` object has a specific option set
 

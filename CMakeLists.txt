@@ -22,8 +22,6 @@ add_library(gradient_dialog STATIC
   gradient_edit.h
   gradient_stops_edit.cc
   gradient_stops_edit.h
-  gradient_variant.cc
-  gradient_variant.h
 )
 
 target_link_libraries(gradient_dialog PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
