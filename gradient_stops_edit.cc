@@ -170,7 +170,7 @@ void GradientStopsEdit::paintEvent(QPaintEvent* event)
   p.setBrush(QColor(255, 255, 255, 180));
 
   for (auto& s : qAsConst(m_stops))
-    p.drawRect(QRect(-4, 0, 8, height()).translated(s.first * width(), 0));
+    p.drawRoundedRect(QRect(-4, 0, 8, height()).translated(s.first * width(), 0), 2, 2);
 
   event->accept();
 }
