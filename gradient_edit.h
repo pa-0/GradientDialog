@@ -18,8 +18,7 @@
   with Qt gradient picker library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GRADIENT_EDIT_H
-#define GRADIENT_EDIT_H
+#pragma once
 
 #include <QWidget>
 
@@ -68,5 +67,3 @@ private:
   QVector<QPointF> m_points;
   int m_selected_point = -1;
 };
-
-#endif // GRADIENT_EDIT_H

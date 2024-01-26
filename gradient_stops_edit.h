@@ -18,8 +18,7 @@
   with Qt gradient picker library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GRADIENT_STOPS_EDIT_H
-#define GRADIENT_STOPS_EDIT_H
+#pragma once
 
 #include <QWidget>
 
@@ -69,5 +68,3 @@ private:
   int m_stop_index = -1;
   QImage m_gradient;
 };
-
-#endif // GRADIENT_STOPS_EDIT_H

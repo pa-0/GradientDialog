@@ -18,8 +18,7 @@
   with Qt gradient picker library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GRADIENT_DIALOG_H
-#define GRADIENT_DIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -63,5 +62,3 @@ private slots:
 private:
   Ui::GradientDialog* ui;
 };
-
-#endif // GRADIENT_DIALOG_H

@@ -14,20 +14,19 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        qt: ["5.*", "6.*"]
+        qt: ["5.15", "6.5"]
 
     runs-on: ${{ matrix.os }}
     name: "${{ matrix.os }}-qt-${{ matrix.qt }}"
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
         version: ${{ matrix.qt }}
         archives: icu qtbase
-        cache: true
 
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
