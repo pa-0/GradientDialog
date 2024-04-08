@@ -12,11 +12,7 @@
 #include <QPaintEvent>
 #include <QPainter>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#define position localPos
-#endif
-
-inline bool cmp_pos(const QGradientStop& a, const QGradientStop& b)
+inline bool cmp_pos(const QGradientStop& a, const QGradientStop& b) noexcept
 {
   return a.first < b.first;
 }
@@ -155,7 +151,7 @@ void GradientStopsEdit::paintEvent(QPaintEvent* event)
   p.setPen(Qt::gray);
   p.setBrush(QColor(255, 255, 255, 180));
 
-  for (auto& s : qAsConst(m_stops))
+  for (auto& s : std::as_const(m_stops))
     p.drawRoundedRect(QRect(-4, 0, 8, height()).translated(s.first * width(), 0), 2, 2);
 
   event->accept();

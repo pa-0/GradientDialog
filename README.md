@@ -8,8 +8,8 @@ Provided dialog was written as a missing part that complements `QColorDialog` fo
 Building
 --------
 
-Provided code is compatible with both Qt5 and Qt6, but with an accent to Qt6 (some compatibility stuff was added to support Qt5 build due to interface changes). It doesn't require any private Qt interfaces, depending on only the Qt Widgets library.
-C++14 is mentioned as a requirement, but actually, it can be compiled with C++11, so this requirement can be relaxed if required. C++14 is enforced just because some Qt headers may rely (or just take advantage) on it.
+Provided code is compatible only with Qt6, Qt5 support has been dropped. It doesn't require any private Qt interfaces, depends on only the Qt Widgets library.
+C++17 is required, some Qt stuff was depreceted since 6.6 and should be replaced with C++17 standard functions.
 
 The build is supported and was tested on major systems: Windows, Linux, and macOS.
 

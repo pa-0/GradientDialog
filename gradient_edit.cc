@@ -11,10 +11,6 @@
 #include <QPaintEvent>
 #include <QPainter>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#define position localPos
-#endif
-
 static QPixmap create_background()
 {
   QPixmap pxm(8, 8);
@@ -156,7 +152,7 @@ void GradientEdit::paintEvent(QPaintEvent* event)
 
   p.setRenderHint(QPainter::Antialiasing);
 
-  for (auto& i : qAsConst(m_points))
+  for (auto& i : std::as_const(m_points))
     p.drawEllipse(QPointF(i.x() * width(), i.y() * height()), 5, 5);
 
   event->accept();
